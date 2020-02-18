@@ -8,6 +8,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -64,6 +65,7 @@ nmap <C-[> :cprevious<CR>
 
 " Nerdtree:
 autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nmap <C-n> :NERDTreeToggle<CR>
@@ -74,3 +76,6 @@ nmap <C-p> :FZF<CR>
 " GitGutter
 set updatetime=250
 
+hi FloatermNF guibg=black
+hi FloatermBorderNF guibg=gray guifg=blue
+nmap <C-t> :FloatermNew<CR>
