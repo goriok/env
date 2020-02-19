@@ -9,6 +9,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'voldikss/vim-floaterm'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 
 call plug#end()
 
@@ -79,3 +82,4 @@ set updatetime=250
 hi FloatermNF guibg=black
 hi FloatermBorderNF guibg=gray guifg=blue
 nmap <C-t> :FloatermNew<CR>
+autocmd User Startified setlocal buflisted
