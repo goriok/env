@@ -2,6 +2,7 @@
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug '/usr/local/opt/fzf'
@@ -12,6 +13,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'enricobacis/vim-airline-clock'
+Plug 'skywind3000/asyncrun.vim' 
+Plug 'mattia72/vim-ripgrep' 
 
 call plug#end()
 
@@ -31,11 +34,11 @@ syntax enable
 set tabstop=2
 set softtabstop=2
 set expandtab     	 
-
+set shiftwidth=2
 " UI:
-:set ruler
-:set noswapfile
-:set wrap!
+set ruler
+set noswapfile
+set wrap!
 set relativenumber
 "set number 
 set showcmd   
@@ -62,10 +65,6 @@ nnoremap gV `[v`]
 " DEVFONTS:
 set encoding=utf8
 
-" VIMGREP
-nmap <C-]> :cnext<CR>
-nmap <C-[> :cprevious<CR>
-
 " Nerdtree:
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -74,12 +73,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap <C-n> :NERDTreeToggle<CR>
 
 " FZF 
-nmap <C-p> :FZF<CR>
+nmap <C-Space> :FZF<CR>
 
 " GitGutter
 set updatetime=250
 
 hi FloatermNF guibg=black
 hi FloatermBorderNF guibg=gray guifg=blue
-nmap <C-t> :FloatermNew<CR>
 autocmd User Startified setlocal buflisted
+
+" vimgrep
+set wildignore=*/node_modules/*,*/target/*,*/tmp/*,*/coverage/*,*/**.log
+
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+
