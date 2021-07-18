@@ -2,7 +2,7 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug '/usr/local/opt/fzf'
@@ -14,7 +14,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'skywind3000/asyncrun.vim' 
-Plug 'mattia72/vim-ripgrep' 
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+"Plug 'mattia72/vim-ripgrep' 
 
 call plug#end()
 
